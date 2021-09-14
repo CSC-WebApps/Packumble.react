@@ -100,21 +100,17 @@ function rightbtnClick(e) {
             }
 
             // Set animation status based on match
-            // if (data.match) {
-            // card.classList.add("fire");
-            // setIsAMatch(true); 
-            // } else {
-            // card.classList.add("swiperight");
-            // setIsAMatch(false);
-            // }
+            if (data.match) {
+                setCard(React.cloneElement(card, {isAMatch: true}));
+            } else {
+                setCard(React.cloneElement(card, {swiperight: true}));
+            }
 
             // When swipe or animation ends, set next card
             // card.addEventListener("transitionend", nextCard);
             // card.addEventListener("animationend", () => {
             nextCard();
             if (data.match) setMatches([...matches, React.cloneElement(card, { email: data.email })]);
-            //     $("#matcharea").append(card);
-            //     $(card).find('.card__face--back').append(data.email);
 
             //     card.classList.remove("fire");
             //     card.removeEventListener("transitionend", nextCard);
