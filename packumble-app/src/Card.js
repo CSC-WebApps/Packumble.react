@@ -11,7 +11,7 @@ function Card(props) {
 
     const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${props.imgId}.png`
     return (
-        <div id="potentialmatch" className={'p-2 card w-50' + (flipped ? ' is-flipped' : '') + (props.isAMatch ? ' fire' : '') + (props.swiperight ? ' swiperight' : '')} onClick={() => setFlipped(!flipped)}>
+        <div id="potentialmatch" className={'p-2 card w-50' + (flipped ? ' is-flipped' : '') + (props.isAMatch ? ' fire' : '') + (props.swiperight ? ' swiperight' : '') + (props.swipeleft ? ' swipeleft' : '')} onClick={() => setFlipped(!flipped)}>
             <div className="card-body">
                 <div className="card__face">
                     <h5 className="card-title">{props.name}</h5>

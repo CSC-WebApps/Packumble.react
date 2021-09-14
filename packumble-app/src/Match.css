@@ -49,7 +49,7 @@ body {
 
 
 .fire {
-    animation: burn 3s linear;
+    animation: burn 1s linear;
 }
 
 @keyframes burn {

@@ -54,22 +54,19 @@ function Match() {
 
 function leftbtnClick(e) {
 
-    // let card = $("#potentialmatch")[0];
     // card.addEventListener("transitionend", () => {
-    // card.remove();
 
     // No, thanks
-    fetch('/api/no').then(_ => {
+    fetch('/api/no').then(async _ => {
+        await applyCardAnimation('swipeleft')
+        
         // Get next card
         fetch('/api/see')
             .then(response => response.json())
             .then(card => {
                 createCard(card);
             });
-    });
-    // });
-
-    // card.classList.add("swipeleft");
+        });
 };
 
 function rightbtnClick(e) {
@@ -86,7 +83,7 @@ function rightbtnClick(e) {
         body: JSON.stringify({ username, language })
     })
         .then(response => response.json())
-        .then(data => {
+        .then(async data => {
 
             console.log(data);
 
@@ -99,11 +96,12 @@ function rightbtnClick(e) {
                     });
             }
 
+
             // Set animation status based on match
             if (data.match) {
-                setCard(React.cloneElement(card, {isAMatch: true}));
+                await applyCardAnimation('isAMatch');
             } else {
-                setCard(React.cloneElement(card, {swiperight: true}));
+                await applyCardAnimation('swiperight');
             }
 
             // When swipe or animation ends, set next card
@@ -118,6 +116,15 @@ function rightbtnClick(e) {
 
         });
 
+}
+
+async function applyCardAnimation(animationName) {
+    return new Promise((resolve, reject) => {
+        setCard( React.cloneElement(card, {[animationName]: true}) );
+        setTimeout(()=> {
+            resolve();
+        }, 300)
+    })
 }
 
 // Load card initial card
