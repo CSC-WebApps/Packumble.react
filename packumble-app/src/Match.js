@@ -112,7 +112,7 @@ function rightbtnClick(e) {
             // card.addEventListener("transitionend", nextCard);
             // card.addEventListener("animationend", () => {
             nextCard();
-            if (data.match) setMatches([...matches, card]);
+            if (data.match) setMatches([...matches, React.cloneElement(card, { email: data.email })]);
             //     $("#matcharea").append(card);
             //     $(card).find('.card__face--back').append(data.email);
 
@@ -134,12 +134,6 @@ fetch('/api/see')
     .catch(err => {
         console.log(err)
     });
-
-// Allow flip
-// $('#matcharea').on("click", ".card", function () {
-//     let card = this;
-//     card.classList.toggle('is-flipped');
-// });
 
 function createCard(card) {
     setCard(<Card language={card.language} name={card.name} imgId={card.imgId} />);
